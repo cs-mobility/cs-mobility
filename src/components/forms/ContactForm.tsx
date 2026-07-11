@@ -28,10 +28,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
     };
 
     const expandForHash = () => {
-      if (
-        window.location.hash === "#contact-form" &&
-        !desktopQuery.matches
-      ) {
+      if (window.location.hash === "#contact-form" && !desktopQuery.matches) {
         setExpanded(true);
       }
     };
@@ -99,7 +96,9 @@ export function ContactForm({ className = "" }: ContactFormProps) {
       setErrorMessage(data?.error ?? "Something went wrong. Please try again.");
       setState("error");
     } catch {
-      setErrorMessage("Network error. Please check your connection and try again.");
+      setErrorMessage(
+        "Network error. Please check your connection and try again.",
+      );
       setState("error");
     }
   }
@@ -109,7 +108,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
-        className="flex w-full items-center justify-between rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white lg:hidden"
+        className="flex w-full cursor-pointer items-center justify-between rounded-md bg-gold px-6 py-3.5 text-base font-semibold text-white transition-colors hover:bg-[#8f7952] lg:hidden"
         aria-expanded={expanded}
         aria-controls="contact-form-panel"
       >
@@ -197,7 +196,7 @@ export function ContactForm({ className = "" }: ContactFormProps) {
                   type="submit"
                   variant="primary"
                   disabled={state === "submitting"}
-                  className="w-full"
+                  className="w-full cursor-pointer"
                 >
                   {state === "submitting" ? "Sending…" : "Send message"}
                 </Button>
