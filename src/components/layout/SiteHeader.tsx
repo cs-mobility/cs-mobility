@@ -1,15 +1,35 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navLinks } from "@/lib/content/site";
 import { HashLink } from "../ui/HashLink";
 import { CloseIcon, MenuIcon } from "../ui/Icons";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => setOpen(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+      if (
+        menuRef.current?.contains(target) ||
+        toggleRef.current?.contains(target)
+      ) {
+        return;
+      }
+      setOpen(false);
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-prussian-blue bg-white">
@@ -38,8 +58,9 @@ export function SiteHeader() {
         </nav>
 
         <button
+          ref={toggleRef}
           type="button"
-          className="text-prussian-blue lg:hidden"
+          className="text-prussian-blue lg:hidden cursor-pointer"
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -59,6 +80,7 @@ export function SiteHeader() {
         }`}
       >
         <nav
+          ref={menuRef}
           id="mobile-nav"
           className="overflow-hidden border-t border-white-smoke bg-white"
           aria-label="Mobile"
@@ -69,7 +91,7 @@ export function SiteHeader() {
               <li key={link.href}>
                 <HashLink
                   href={link.href}
-                  className="block text-base font-medium text-prussian-blue transition-colors hover:text-gold"
+                  className="block text-base font-medium text-prussian-blue transition-colors hover:text-gold w-fit"
                   onNavigate={closeMenu}
                   tabIndex={open ? undefined : -1}
                 >

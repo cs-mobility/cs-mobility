@@ -131,15 +131,15 @@ export function ContactForm({ className = "" }: ContactFormProps) {
         >
           <div className="rounded-md bg-gold p-4 md:p-5 lg:mt-0">
             {state === "success" ? (
-              <div className="rounded-md bg-white p-6 text-center text-prussian-blue">
+              <div className="flex min-h-88 w-full flex-col items-center justify-center rounded-md bg-white p-6 text-center text-prussian-blue">
                 <p className="font-serif text-lg font-bold">Thank you!</p>
-                <p className="mt-2 text-sm">
+                <p className="mt-2 max-w-sm text-sm">
                   Your message has been sent. We will get back to you shortly.
                 </p>
                 <button
                   type="button"
                   onClick={() => setState("idle")}
-                  className="mt-4 text-sm font-semibold text-gold underline"
+                  className="mt-6 text-sm font-semibold text-gold underline"
                 >
                   Send another message
                 </button>
