@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CS Mobility
 
-## Getting Started
+Marketing website for [CS Mobility](https://csmobility.se) — helping international companies establish and operate in Sweden.
 
-First, run the development server:
+Built with Next.js 16, React 19, and Tailwind CSS 4. Designed from the Figma mobile mockup, extended responsively for desktop.
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact form & email
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Submissions go to `/api/contact`, which sends email via [Resend](https://resend.com).
 
-## Learn More
+1. Copy `.env.example` to `.env.local` and set:
 
-To learn more about Next.js, take a look at the following resources:
+   ```
+   RESEND_API_KEY=re_xxxxxxxx
+   CONTACT_TO_EMAIL=advice@csmobility.se
+   CONTACT_FROM_EMAIL=CS Mobility <onboarding@resend.dev>
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Verify your sending domain in Resend (or use `onboarding@resend.dev` for testing).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Netlify fallback:** If `RESEND_API_KEY` is not set in production, the form falls back to [Netlify Forms](https://docs.netlify.com/forms/setup/) (detected via `public/forms.html`). Enable form notifications in the Netlify dashboard under **Forms → Form notifications**.
 
-## Deploy on Vercel
+## Deploy to Netlify
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Connect this repo to Netlify.
+2. Build settings are in `netlify.toml` (`npm run build` + `@netlify/plugin-nextjs`).
+3. Add environment variables in **Site settings → Environment variables**:
+   - `RESEND_API_KEY`
+   - `CONTACT_TO_EMAIL`
+   - `CONTACT_FROM_EMAIL` (optional)
+4. Deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Assets
+
+Static assets live in `public/`:
+
+- `logotypes/` — CS Mobility and partner logos
+- `backgrounds/` — hero city images
