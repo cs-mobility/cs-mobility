@@ -97,17 +97,15 @@ export function SiteFooter() {
                   className="flex items-start gap-3 transition-colors hover:text-gold"
                 >
                   <MapPinIcon className="mt-0.5 h-5 w-5 shrink-0" />
-                  <span className="max-w-16 leading-relaxed sm:max-w-none">
-                    {site.locations.map((city, index) => (
-                      <span key={city}>
-                        {index > 0 && (
-                          <span aria-hidden="true" className="text-gold/60">
-                            {" · "}
-                          </span>
-                        )}
-                        {city}
-                      </span>
-                    ))}
+                  <span className="min-w-0 flex-1 leading-relaxed">
+                    <span className="flex flex-col gap-0.5 sm:hidden">
+                      {site.locations.map((city) => (
+                        <span key={city}>{city}</span>
+                      ))}
+                    </span>
+                    <span className="hidden sm:inline">
+                      {site.locations.join(" · ")}
+                    </span>
                   </span>
                 </a>
               </li>
