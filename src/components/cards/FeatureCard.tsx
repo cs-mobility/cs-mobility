@@ -3,9 +3,11 @@ import { ChevronRightIcon, FeatureIconGraphic } from "../ui/Icons";
 
 type FeatureCardProps = {
   item: FeatureItem;
+  /** Set to true to show the trailing chevron on each card. */
+  showChevron?: boolean;
 };
 
-export function FeatureCard({ item }: FeatureCardProps) {
+export function FeatureCard({ item, showChevron = false }: FeatureCardProps) {
   return (
     <article className="flex items-center gap-4 rounded-lg border-2 border-white-smoke bg-white px-4 py-5 md:px-5">
       <FeatureIconGraphic icon={item.icon} className="h-10 w-10 shrink-0" />
@@ -17,7 +19,9 @@ export function FeatureCard({ item }: FeatureCardProps) {
           {item.description}
         </p>
       </div>
-      <ChevronRightIcon className="h-5 w-5 shrink-0 text-prussian-blue/40 md:h-6 md:w-6" />
+      {showChevron && (
+        <ChevronRightIcon className="h-5 w-5 shrink-0 text-prussian-blue/40 md:h-6 md:w-6" />
+      )}
     </article>
   );
 }
