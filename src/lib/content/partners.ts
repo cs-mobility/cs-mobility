@@ -1,4 +1,12 @@
-export const partners = [
+export type Partner = {
+  name: string;
+  href?: string;
+  src: string;
+  width: number;
+  height: number;
+};
+
+export const partners: Partner[] = [
   {
     name: "Azets",
     href: "https://www.azets.com/sv-se",
@@ -20,4 +28,4 @@ export const partners = [
     width: 200,
     height: 50,
   },
-] as const;
+];
