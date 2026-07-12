@@ -48,7 +48,7 @@ body {
 }
 
 .partner-marquee-track {
-  animation: partner-marquee 55s linear infinite;
+  animation: partner-marquee var(--marquee-duration, 55s) linear infinite;
 }
 
 .partner-marquee-track:hover {
