@@ -7,7 +7,6 @@ import {
   LinkedInIcon,
   MailIcon,
   MapPinIcon,
-  PhoneIcon,
 } from "../ui/Icons";
 import { Container } from "./Container";
 
@@ -22,11 +21,7 @@ function SocialIcon({ icon }: { icon: (typeof socialLinks)[number]["icon"] }) {
   }
 }
 
-function SocialLink({
-  link,
-}: {
-  link: (typeof socialLinks)[number];
-}) {
+function SocialLink({ link }: { link: (typeof socialLinks)[number] }) {
   const icon = <SocialIcon icon={link.icon} />;
 
   if (link.href) {
@@ -96,22 +91,24 @@ export function SiteFooter() {
             <ul className="space-y-3 text-sm">
               <li>
                 <a
-                  href={`https://maps.google.com/?q=${encodeURIComponent(site.address)}`}
+                  href={`https://maps.google.com/?q=${encodeURIComponent(`${site.locations.join(", ")}, Sweden`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 transition-colors hover:text-gold"
                 >
                   <MapPinIcon className="mt-0.5 h-5 w-5 shrink-0" />
-                  {site.address}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-3 transition-colors hover:text-gold"
-                >
-                  <PhoneIcon className="h-5 w-5 shrink-0" />
-                  {site.phone}
+                  <span className="max-w-16 leading-relaxed sm:max-w-none">
+                    {site.locations.map((city, index) => (
+                      <span key={city}>
+                        {index > 0 && (
+                          <span aria-hidden="true" className="text-gold/60">
+                            {" · "}
+                          </span>
+                        )}
+                        {city}
+                      </span>
+                    ))}
+                  </span>
                 </a>
               </li>
               <li>

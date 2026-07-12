@@ -7,6 +7,7 @@ import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { WhySection } from "@/components/sections/WhySection";
+import { featureFlags } from "@/lib/content/site";
 
 export default function Home() {
   return (
@@ -17,8 +18,8 @@ export default function Home() {
         <ServicesSection />
         <ProcessSection />
         <WhySection />
-        <TestimonialsSection />
-        <PartnersSection />
+        {featureFlags.showTestimonials && <TestimonialsSection />}
+        {featureFlags.showPartners && <PartnersSection />}
         <ContactSection />
       </main>
       <SiteFooter />
