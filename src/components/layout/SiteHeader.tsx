@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { type MouseEvent, useEffect, useRef, useState } from "react";
 import { navLinks } from "@/lib/content/site";
 import { HashLink } from "../ui/HashLink";
 import { CloseIcon, MenuIcon } from "../ui/Icons";
@@ -12,6 +13,12 @@ export function SiteHeader() {
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => setOpen(false);
+
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    closeMenu();
+    event.preventDefault();
+    window.location.assign("/");
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -34,7 +41,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-prussian-blue bg-white">
       <div className="mx-auto flex h-[82px] max-w-6xl items-center justify-between px-5 md:px-10 lg:px-20">
-        <HashLink href="#hero" className="shrink-0" onNavigate={closeMenu}>
+        <Link href="/" className="shrink-0" onClick={handleLogoClick}>
           <Image
             src="/logotypes/cs_mobility_crisp_trimmed_transparent.svg"
             alt="CS Mobility"
@@ -43,7 +50,7 @@ export function SiteHeader() {
             priority
             className="h-9 w-auto"
           />
-        </HashLink>
+        </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
           {navLinks.map((link) => (
