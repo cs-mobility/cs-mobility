@@ -9,7 +9,7 @@ export function HeroSection() {
       id="hero"
       className="flex min-h-[calc(100svh-var(--header-height))] flex-col overflow-hidden bg-white"
     >
-      <div className="flex min-h-[calc(100svh-var(--header-height))] flex-1 flex-col lg:grid lg:grid-cols-2 lg:items-stretch">
+      <div className="grid min-h-[calc(100svh-var(--header-height))] flex-1 grid-cols-1 lg:grid-cols-2 lg:items-stretch">
         {/* Copy — blue panel, left half on lg */}
         <div className="flex flex-col justify-center bg-prussian-blue px-5 py-12 text-white md:px-10 md:py-14 lg:px-12 lg:py-16 xl:px-20">
           <h1 className="font-serif text-[30px] leading-tight font-bold md:text-4xl lg:text-5xl">
@@ -34,7 +34,7 @@ export function HeroSection() {
         </div>
 
         {/* Image — fills remaining height on mobile, right half on lg */}
-        <div className="relative min-h-[280px] flex-1 md:min-h-[360px] lg:min-h-0 lg:flex-none">
+        <div className="relative min-h-[280px] md:min-h-[360px] lg:min-h-0">
           <div className="absolute inset-0 overflow-hidden">
             <Image
               src="/backgrounds/city-blue-w.png"

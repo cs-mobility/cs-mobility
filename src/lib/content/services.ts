@@ -2,26 +2,23 @@ import type { FeatureItem } from "./types";
 
 export const services: FeatureItem[] = [
   {
-    title: "Tax & Compliance Support",
-    description: "Navigate Swedish tax requirements with confidence.",
-    icon: "tax",
+    title: "Setup & Registrations",
+    description: "Get established with every Swedish authority.",
+    icon: "setup",
   },
   {
-    title: "Business Setup Advisory",
-    description:
-      "Strategic guidance for establishing and structuring your Swedish entity.",
-    icon: "business",
+    title: "Payroll, Finance & Taxes",
+    description: "Payroll, VAT reporting and tax filings.",
+    icon: "payroll",
   },
   {
-    title: "Work & Residence Permits",
-    description:
-      "End-to-end support for work permits, residency, and relocation.",
-    icon: "permits",
+    title: "HR & Mobility",
+    description: "Permits, relocation, labour law and staff.",
+    icon: "hr",
   },
   {
-    title: "Ongoing Support & Advisory",
-    description:
-      "Continued compliance guidance and operational support as you grow.",
-    icon: "support",
+    title: "Legal & Compliance",
+    description: "Stay fully compliant with Swedish requirements.",
+    icon: "compliance",
   },
 ];

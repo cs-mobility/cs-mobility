@@ -1,4 +1,14 @@
 import type { FeatureIcon } from "@/lib/content/types";
+import {
+  HandCoins,
+  CircleUser,
+  Clock,
+  Landmark,
+  ShieldCheck,
+  SlidersHorizontal,
+  User,
+  type LucideIcon,
+} from "lucide-react";
 import type { SVGProps } from "react";
 
 type IconProps = SVGProps<SVGSVGElement>;
@@ -149,6 +159,17 @@ export function InstagramIcon(props: IconProps) {
   );
 }
 
+const featureIcons: Record<FeatureIcon, LucideIcon> = {
+  setup: Landmark,
+  payroll: HandCoins,
+  hr: User,
+  compliance: ShieldCheck,
+  expert: CircleUser,
+  efficient: Clock,
+  tailored: SlidersHorizontal,
+  trusted: ShieldCheck,
+};
+
 export function FeatureIconGraphic({
   icon,
   className,
@@ -156,70 +177,13 @@ export function FeatureIconGraphic({
   icon: FeatureIcon;
   className?: string;
 }) {
-  const common = {
-    viewBox: "0 0 40 40",
-    fill: "none",
-    className,
-    "aria-hidden": true as const,
-  };
+  const Icon = featureIcons[icon];
 
-  switch (icon) {
-    case "tax":
-      return (
-        <svg {...common}>
-          <rect x="8" y="6" width="24" height="28" rx="2" stroke="#142345" strokeWidth="1.5" />
-          <path d="M14 14h12M14 20h12M14 26h8" stroke="#142345" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      );
-    case "business":
-      return (
-        <svg {...common}>
-          <path d="M8 34V14l12-6 12 6v20" stroke="#142345" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M16 34V22h8v12" stroke="#142345" strokeWidth="1.5" />
-        </svg>
-      );
-    case "permits":
-      return (
-        <svg {...common}>
-          <rect x="10" y="6" width="20" height="28" rx="2" stroke="#142345" strokeWidth="1.5" />
-          <circle cx="20" cy="18" r="5" stroke="#142345" strokeWidth="1.5" />
-          <path d="M14 30h12" stroke="#142345" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      );
-    case "support":
-      return (
-        <svg {...common}>
-          <path d="M8 20a12 12 0 0124 0v6H8v-6z" stroke="#142345" strokeWidth="1.5" />
-          <path d="M16 32v2a4 4 0 008 0v-2" stroke="#142345" strokeWidth="1.5" />
-        </svg>
-      );
-    case "expert":
-      return (
-        <svg {...common}>
-          <circle cx="20" cy="14" r="6" stroke="#142345" strokeWidth="1.5" />
-          <path d="M8 34c0-6.6 5.4-10 12-10s12 3.4 12 10" stroke="#142345" strokeWidth="1.5" />
-        </svg>
-      );
-    case "efficient":
-      return (
-        <svg {...common}>
-          <circle cx="20" cy="20" r="12" stroke="#142345" strokeWidth="1.5" />
-          <path d="M20 12v8l5 3" stroke="#142345" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      );
-    case "tailored":
-      return (
-        <svg {...common}>
-          <path d="M10 30l10-20 10 20H10z" stroke="#142345" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M16 24h8" stroke="#142345" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      );
-    case "trusted":
-      return (
-        <svg {...common}>
-          <path d="M20 6l12 4v10c0 8-5.2 12.4-12 14-6.8-1.6-12-6-12-14V10l12-4z" stroke="#142345" strokeWidth="1.5" strokeLinejoin="round" />
-          <path d="M15 20l3 3 7-7" stroke="#142345" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      );
-  }
+  return (
+    <Icon
+      className={[className, "text-prussian-blue"].filter(Boolean).join(" ")}
+      strokeWidth={1.5}
+      aria-hidden
+    />
+  );
 }

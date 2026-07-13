@@ -1,8 +1,8 @@
 export type FeatureIcon =
-  | "tax"
-  | "business"
-  | "permits"
-  | "support"
+  | "setup"
+  | "payroll"
+  | "hr"
+  | "compliance"
   | "expert"
   | "efficient"
   | "tailored"
